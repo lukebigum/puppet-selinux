@@ -10,8 +10,8 @@ class selinux::params {
   $sx_mod_dir   = '/usr/share/selinux'
   $mode         = 'disabled'
 
-  case $::osfamily {
-    'RedHat': {
+  case $::operatingsystem {
+    /^(RedHat|CentOS)$/: {
       case $::operatingsystemmajrelease {
         '7': {
           $sx_fs_mount = '/sys/fs/selinux'
@@ -26,12 +26,23 @@ class selinux::params {
           $package_name = 'policycoreutils'
         }
         default: {
-          fail("${::osfamily}-${::operatingsystemmajrelease} is not supported")
+          fail("${::operatingsystem}-${::operatingsystemmajrelease} is not supported")
+        }
+      }
+    }
+    'Fedora': {
+      case $::operatingsystemmajrelease {
+        /^(21|22)$/: {
+          $sx_fs_mount = '/sys/fs/selinux'
+          $package_name = 'policycoreutils-python'
+        }
+        default: {
+          fail("${::operatingsystem}-${::operatingsystemmajrelease} is not supported")
         }
       }
     }
     default: {
-      fail("${::osfamily} is not supported")
+      fail("${::operatingsystem} is not supported")
     }
   }
 
