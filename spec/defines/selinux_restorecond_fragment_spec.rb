@@ -4,7 +4,7 @@ describe 'selinux::restorecond::fragment' do
   let(:pre_condition) { 'class { "selinux::restorecond": }' }
   let(:title) { 'cond' }
   let(:facts) { {
-    :osfamily => 'RedHat',
+    :operatingsystem => 'RedHat',
     :operatingsystemmajrelease => '7',
     :selinux_current_mode => 'enforcing',
     # concat facts

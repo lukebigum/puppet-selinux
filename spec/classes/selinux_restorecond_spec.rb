@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'selinux::restorecond' do
   let(:facts) { {
-    :osfamily => 'RedHat',
+    :operatingsystem => 'RedHat',
     :operatingsystemmajrelease => '7',
     :selinux_current_mode => 'enforcing',
     # concat facts

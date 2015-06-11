@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'selinux' do
-  let(:facts) { { :osfamily => 'RedHat', :operatingsystemmajrelease => '7', :selinux_current_mode => 'enforcing' } }
+  let(:facts) { { :operatingsystem => 'RedHat', :operatingsystemmajrelease => '7', :selinux_current_mode => 'enforcing' } }
 
   context 'config' do
 
